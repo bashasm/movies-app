@@ -1,9 +1,9 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import home_cinema from "../../assets/home_cinema.svg";
 import { StateContext } from "../../context/GlobalState";
 import "./sideBar.css";
-import home_cinema from "../../assets/home_cinema.svg";
-
-import styled from "styled-components";
 
 const GenresContainer = styled.div`
   height: calc(100% - 360px);
@@ -19,7 +19,9 @@ function SideBar() {
   return (
     <div className="sidebar">
       <div className="home-container">
-        <img src={home_cinema} />
+        <Link to="/">
+          <img src={home_cinema} />
+        </Link>
       </div>
       <div className="categories">
         <div className="categories-heading">Categories</div>

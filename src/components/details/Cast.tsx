@@ -8,6 +8,9 @@ const Img = styled.img`
   object-fit: cover;
   background-color: transparent;
   margin: 5px 0.7em;
+  &:nth-of-type(1) {
+    margin-left: 0;
+  }
 `;
 
 function Cast({ cast }) {
@@ -17,6 +20,8 @@ function Cast({ cast }) {
       {cast.map((item: IMovieCast) => (
         <Img
           key={item.id}
+          alt={item.name}
+          title={item.name}
           src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
         />
       ))}

@@ -5,6 +5,7 @@ import { loadMovieCasts, loadMovieDetail } from "../../context/actions/movies";
 import { DispatchContext, StateContext } from "../../context/GlobalState";
 import Rating from "../rating/Rating";
 import Cast from "./Cast";
+import Footer from "./Footer";
 import Genres from "./Genres";
 import Information from "./Information";
 import TimeLangInfo from "./TimeLangInfo";
@@ -62,7 +63,7 @@ const MovieDetail: React.FC = () => {
   const state = useContext(StateContext);
   const detail = state?.productsState?.movieDetail;
   const movieCasts = state?.productsState?.movieCasts;
-  console.log("[MovieDetail]");
+  console.log("[MovieDetail]", detail, movieCasts);
 
   async function fetchMovieDetail() {
     const movieDetail = await fetch(
@@ -105,6 +106,7 @@ const MovieDetail: React.FC = () => {
           <Genres genres={detail.genres} />
           <Information information={detail.overview} />
           <Cast cast={movieCasts?.slice(0, 6)} />
+          <Footer imdb_id={detail.imdb_id} homepage={detail.homepage} />
         </ContentContainer>
       </MovieDetailContainer>
     )
