@@ -1,4 +1,4 @@
-import { LOAD_MOVIES_LIST, LOAD_POPULAR_MOVIES } from "../actions/movies.js";
+import { LOAD_MOVIES_LIST, LOAD_POPULAR_MOVIES } from "../actions/movies";
 
 export const productsInitialState = { popularMovies: {}, moviesList: [] };
 

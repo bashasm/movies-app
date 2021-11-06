@@ -8,11 +8,11 @@ import {
 import { loadMoviesList, loadPopularMovies } from "../context/actions/movies";
 import { DispatchContext } from "../context/GlobalState";
 import "./App.css";
-import Home from "./Home.jsx";
-import Movie from "./Movie.jsx";
+import Home from "./Home";
+import Movie from "./Movie";
 import NavBar from "./NavBar";
-import NotFound from "./NotFound.jsx";
-import SideBar from "./SideBar/SideBar.jsx";
+import NotFound from "./NotFound";
+import SideBar from "./SideBar/SideBar";
 
 function App() {
   const dispatch = useContext(DispatchContext);

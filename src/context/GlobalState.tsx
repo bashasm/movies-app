@@ -1,6 +1,6 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 // import cartReducer, { cartInitialState } from "./reducers/cart";
-import productsReducer, { productsInitialState } from "./reducers/movies.js";
+import productsReducer, { productsInitialState } from "./reducers/movies";
 
 export const DispatchContext = createContext();
 export const StateContext = createContext();
