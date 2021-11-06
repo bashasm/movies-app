@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 const FooterContainer = styled.div`
   display: flex;
@@ -44,14 +44,17 @@ const LinkButton = styled(Link)`
   }
 `;
 
-function Footer({ imdb_id, homepage }) {
+function Footer({ imdb_id, homepage, youtube_key }) {
   return (
     <FooterContainer>
       <LeftContainer>
         <Button target="_blank" href={`https://www.imdb.com/title/${imdb_id}`}>
           IMDB
         </Button>
-        <Button target="_blank" href={`https://www.imdb.com/title/${imdb_id}`}>
+        <Button
+          target="_blank"
+          href={`https://www.youtube.com/watch?v=${youtube_key}`}
+        >
           Trailer
         </Button>
         <Button target="_blank" href={`https://www.imdb.com/title/${homepage}`}>

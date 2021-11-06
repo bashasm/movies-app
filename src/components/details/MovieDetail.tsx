@@ -18,6 +18,9 @@ const MovieDetailContainer = styled.div`
 const SidebarContainer = styled.div`
   margin: 10px;
   flex: 1;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ContentContainer = styled.div`
@@ -45,9 +48,6 @@ const Img = styled.img`
   width: 400px;
   margin-top: 10px;
   margin-bottom: 10px;
-  &:hover {
-    transform: scale(1.05);
-  }
 `;
 
 const RatingTimeContainer = styled.div`
@@ -100,13 +100,17 @@ const MovieDetail: React.FC = () => {
             <TimeLangInfo
               release_date={detail.release_date}
               runtime={detail.runtime}
-              lang={detail.original_language}
+              lang={detail.spoken_languages[0].name}
             />
           </RatingTimeContainer>
           <Genres genres={detail.genres} />
           <Information information={detail.overview} />
           <Cast cast={movieCasts?.slice(0, 6)} />
-          <Footer imdb_id={detail.imdb_id} homepage={detail.homepage} />
+          <Footer
+            imdb_id={detail.imdb_id}
+            homepage={detail.homepage}
+            youtube_key={detail.videos.results[0].key}
+          />
         </ContentContainer>
       </MovieDetailContainer>
     )

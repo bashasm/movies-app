@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const InformationContainer = styled.div`
-  margin: 10px 0;
+  margin: 50px 0;
 `;
 const TitleContainer = styled.div`
   font-size: 20px;
