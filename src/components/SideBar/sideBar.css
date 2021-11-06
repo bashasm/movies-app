@@ -1,0 +1,39 @@
+.sidebar {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #ccc;
+}
+
+.home-container {
+  display: flex;
+  padding: 10% 0;
+  justify-content: center;
+}
+
+.sidebar img {
+  width: 50%;
+}
+
+.categories,
+.genres {
+  border-top: 1px solid #ccc;
+}
+
+.categories-heading,
+.genre-list-heading {
+  color: rgba(0, 0, 0, 0.54);
+  padding: 10px;
+  font-size: 0.875rem;
+}
+
+.categories-item,
+.genre-item {
+  cursor: pointer;
+  padding: 20px 10px;
+}
+
+.categories-item:hover,
+.genre-item:hover {
+  background: rgb(240, 234, 234);
+}

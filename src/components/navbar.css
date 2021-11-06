@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  width: 100%;
+  min-height: 64px;
+  color: #fff;
+  background-color: #3f51b5;
+}
+
+form {
+  margin: auto;
+  max-width: 400px;
+  height: 40px;
+  display: flex;
+  padding: 0 5px;
+  align-items: center;
+}
+
+input[type="text"] {
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  border: 1px solid #2d9fd9;
+  color: #a0d18c;
+  width: 250px;
+  height: 40px;
+  padding-left: 10px;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border: 1px solid #a0d18c;
+  color: #2d9fd9;
+}
+
+button.searchIcon {
+  width: 25px;
+  height: 25px;
+  background: none;
+  border: none;
+  outline: none;
+  margin-left: -35px;
+}
+
+button.searchIcon:hover {
+  cursor: pointer;
+}
