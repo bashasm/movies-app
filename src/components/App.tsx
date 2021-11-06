@@ -8,13 +8,13 @@ import {
 import { loadMoviesList, loadPopularMovies } from "../context/actions/movies";
 import { DispatchContext } from "../context/GlobalState";
 import "./App.css";
-import Home from "./Home";
-import Movie from "./Movie";
-import NavBar from "./NavBar";
-import NotFound from "./NotFound";
-import SideBar from "./SideBar/SideBar";
+import MovieDetail from "./details/MovieDetail";
+import Home from "./home/Home";
+import NavBar from "./navbar/NavBar";
+import NotFound from "./not-found/NotFound";
+import SideBar from "./sideBar/SideBar";
 
-function App() {
+const App: React.FC = () => {
   const dispatch = useContext(DispatchContext);
 
   const getPopularMovies = async () => {
@@ -45,7 +45,7 @@ function App() {
       <div className="content-container">
         <NavBar />
         <Switch>
-          <Route path="/movie" exact component={Movie} />
+          <Route path="/movie/:id" exact component={MovieDetail} />
           <Route path="/not-found" component={NotFound} />
           <Route path="/" exact component={Home} />
           <Redirect to="/not-found" />
@@ -53,6 +53,6 @@ function App() {
       </div>
     </Router>
   );
-}
+};
 
 export default App;

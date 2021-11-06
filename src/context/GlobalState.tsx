@@ -1,11 +1,12 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
+import { IGlobalState } from "../components/interfaces/interfaces";
 // import cartReducer, { cartInitialState } from "./reducers/cart";
 import productsReducer, { productsInitialState } from "./reducers/movies";
 
 export const DispatchContext = createContext();
-export const StateContext = createContext();
+export const StateContext = createContext<IGlobalState>(null);
 
-const GlobalState = ({ children }) => {
+const GlobalState: React.FC = ({ children }) => {
   //   const [cartState, cartDispatch] = useReducer(cartReducer, cartInitialState);
   const [productsState, productsDispatch] = useReducer(
     productsReducer,

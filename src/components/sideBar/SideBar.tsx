@@ -3,6 +3,14 @@ import { StateContext } from "../../context/GlobalState";
 import "./sideBar.css";
 import home_cinema from "../../assets/home_cinema.svg";
 
+import styled from "styled-components";
+
+const GenresContainer = styled.div`
+  height: calc(100% - 360px);
+  overflow: auto;
+  display: block;
+`;
+
 function SideBar() {
   const { productsState } = useContext(StateContext);
   console.log("[SideBar]", productsState);
@@ -19,7 +27,7 @@ function SideBar() {
         <div className="categories-item">Top Rated</div>
         <div className="categories-item">Upcoming</div>
       </div>
-      <div className="genres">
+      <GenresContainer className="genres">
         <div className="genre-list-heading">Genres</div>
         <div className="genre-list">
           {moviesList.map((movie) => (
@@ -28,7 +36,7 @@ function SideBar() {
             </div>
           ))}
         </div>
-      </div>
+      </GenresContainer>
     </div>
   );
 }
