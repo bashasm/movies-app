@@ -60,7 +60,7 @@ function MoviesList({ page, results, total_pages, total_results }: IMovies) {
       <MoviesListStyled>
         {results?.map((movie) => (
           <MoviesListItemStyled className="movie" key={movie.id}>
-            <Link to={`movie/${movie.id}`}>
+            <Link to={`/movie/${movie.id}`}>
               <Img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
