@@ -8,12 +8,12 @@ export const StateContext = createContext<IGlobalState>(null);
 
 const GlobalState: React.FC = ({ children }) => {
   //   const [cartState, cartDispatch] = useReducer(cartReducer, cartInitialState);
-  const [productsState, productsDispatch] = useReducer(
+  const [moviesState, productsDispatch] = useReducer(
     productsReducer,
     productsInitialState
   );
 
-  console.log(productsState);
+  console.log(moviesState);
 
   const combineDispatch =
     (...dispatches) =>
@@ -35,11 +35,11 @@ const GlobalState: React.FC = ({ children }) => {
   const combinedState = useMemo(
     () => ({
       // cartState,
-      productsState,
+      moviesState,
     }),
     [
       // cartState,
-      productsState,
+      moviesState,
     ]
   );
 

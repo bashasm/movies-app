@@ -9,6 +9,7 @@ import { loadMoviesList, loadPopularMovies } from "../context/actions/movies";
 import { DispatchContext } from "../context/GlobalState";
 import "./App.css";
 import MovieDetail from "./details/MovieDetail";
+import GenresMovies from "./GenresMovies/GenresMovies";
 import Home from "./home/Home";
 import NavBar from "./navbar/NavBar";
 import NotFound from "./not-found/NotFound";
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           <Route path="/movie/:id" exact component={MovieDetail} />
           <Route path="/not-found" component={NotFound} />
           <Route path="/" exact component={Home} />
+          <Route path="/genres/:id" exact component={GenresMovies} />
           <Redirect to="/not-found" />
         </Switch>
       </div>

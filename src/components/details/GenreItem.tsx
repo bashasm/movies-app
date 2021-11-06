@@ -4,9 +4,9 @@ const GenreItemContainer = styled.div`
   text-transform: uppercase;
 `;
 
-function GenreItem({ name }) {
+function GenreItem({ name, onClick }) {
   return (
-    <GenreItemContainer>
+    <GenreItemContainer onClick={onClick}>
       {name}
       <svg
         stroke="currentColor"

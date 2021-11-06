@@ -1,4 +1,4 @@
-import { IPopularMovies } from "../interfaces/interfaces";
+import { IMovies } from "../interfaces/interfaces";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
@@ -30,12 +30,29 @@ const Img = styled.img`
   }
 `;
 
-function MoviesList({
-  page,
-  results,
-  total_pages,
-  total_results,
-}: IPopularMovies) {
+const PaginationContainer = styled.div`
+  margin: 20px 0;
+  text-align: center;
+`;
+
+const PagingButton = styled.button`
+  color: #fff;
+  background-color: #3f51b5;
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  &:hover {
+    background-color: #2c3d9c;
+  }
+`;
+
+const PagingNumber = styled.span`
+  display: inline-block;
+  margin: 0 15px;
+`;
+
+function MoviesList({ page, results, total_pages, total_results }: IMovies) {
   console.log("[MoviesList]", page, results, total_pages, total_results);
 
   return (
@@ -53,11 +70,11 @@ function MoviesList({
           </MoviesListItemStyled>
         ))}
       </MoviesListStyled>
-      <div className="pagination">
-        <button>Previous</button>
-        {page}
-        <button>Next</button>
-      </div>
+      <PaginationContainer>
+        <PagingButton>Previous</PagingButton>
+        <PagingNumber>{page}</PagingNumber>
+        <PagingButton>Next</PagingButton>
+      </PaginationContainer>
     </MoviesListContainer>
   );
 }

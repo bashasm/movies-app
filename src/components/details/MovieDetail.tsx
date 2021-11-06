@@ -61,8 +61,8 @@ const MovieDetail: React.FC = () => {
   let { id } = useParams();
   const dispatch = useContext(DispatchContext);
   const state = useContext(StateContext);
-  const detail = state?.productsState?.movieDetail;
-  const movieCasts = state?.productsState?.movieCasts;
+  const detail = state?.moviesState?.movieDetail;
+  const movieCasts = state?.moviesState?.movieCasts;
   console.log("[MovieDetail]", detail, movieCasts);
 
   async function fetchMovieDetail() {

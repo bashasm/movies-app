@@ -12,9 +12,9 @@ const GenresContainer = styled.div`
 `;
 
 function SideBar() {
-  const { productsState } = useContext(StateContext);
-  console.log("[SideBar]", productsState);
-  const { moviesList } = productsState;
+  const { moviesState } = useContext(StateContext);
+  console.log("[SideBar]", moviesState);
+  const { moviesList } = moviesState;
 
   return (
     <div className="sidebar">

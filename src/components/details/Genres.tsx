@@ -1,6 +1,6 @@
 import GenreItem from "./GenreItem";
-
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 const GenreTitleContainer = styled.div`
   text-align: left;
@@ -16,12 +16,22 @@ const GenreListContainer = styled.div`
 `;
 
 function Genres({ genres }) {
+  let history = useHistory();
+
+  function onClick(id) {
+    history.push(`/genres/${id}`);
+  }
+
   return (
     <>
       <GenreTitleContainer>Genres:</GenreTitleContainer>
       <GenreListContainer>
         {genres.map((genre) => (
-          <GenreItem key={genre.id} name={genre.name} />
+          <GenreItem
+            key={genre.id}
+            name={genre.name}
+            onClick={() => onClick(genre.id)}
+          />
         ))}
       </GenreListContainer>
     </>

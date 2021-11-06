@@ -1,4 +1,4 @@
-import { IProductsState } from "../../components/interfaces/interfaces";
+import { IMoviesState } from "../../components/interfaces/interfaces";
 import {
   LOAD_MOVIES_LIST,
   LOAD_MOVIE_CAST_DETAIL,
@@ -6,7 +6,7 @@ import {
   LOAD_POPULAR_MOVIES,
 } from "../actions/movies";
 
-export const productsInitialState: IProductsState = {
+export const productsInitialState: IMoviesState = {
   popularMovies: null,
   moviesList: [],
   movieDetail: null,
@@ -14,7 +14,7 @@ export const productsInitialState: IProductsState = {
 };
 
 // reducer
-export default (state, action): IProductsState => {
+export default (state, action): IMoviesState => {
   console.log("reducer", action.type);
   switch (action.type) {
     case LOAD_POPULAR_MOVIES:

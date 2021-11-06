@@ -1,5 +1,5 @@
 export interface IGlobalState {
-  productsState: IProductsState;
+  moviesState: IMoviesState;
 }
 
 export interface IMovieCast {
@@ -17,7 +17,7 @@ export interface IMovieCast {
   order: number;
 }
 
-export interface IProductsState {
+export interface IMoviesState {
   popularMovies: IPopularMovies;
   moviesList: IMoviesListItem[];
   movieDetail: IMovieDetail;
