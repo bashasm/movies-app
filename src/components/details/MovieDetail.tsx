@@ -116,7 +116,9 @@ const MovieDetail: React.FC = () => {
           <Footer
             imdb_id={detail.imdb_id}
             homepage={detail.homepage}
-            youtube_key={detail.videos.results[0].key}
+            youtube_key={
+              detail.videos.results?.length ? detail.videos.results[0].key : ""
+            }
           />
         </ContentContainer>
       </MovieDetailContainer>

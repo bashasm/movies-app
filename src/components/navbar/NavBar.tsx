@@ -2,6 +2,7 @@ import { useContext, useRef } from "react";
 import styled from "styled-components";
 import { loadPopularMovies } from "../../context/actions/movies";
 import { DispatchContext } from "../../context/GlobalState";
+import { useHistory } from "react-router-dom";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -50,6 +51,7 @@ const Button = styled.button`
 
 function NavBar() {
   const dispatch = useContext(DispatchContext);
+  const history = useHistory();
   const inputRef = useRef(null);
 
   function onSubmit(e) {
@@ -58,6 +60,10 @@ function NavBar() {
   }
 
   async function search(query) {
+    if (location.pathname !== "/") {
+      // re route to main page
+      history.push("/");
+    }
     const url = query.length
       ? `https://api.themoviedb.org/3/search/movie?api_key=4e0d07555e20e0345f6bd12869b2604e&query=${query}`
       : `https://api.themoviedb.org/3/movie/popular?api_key=4e0d07555e20e0345f6bd12869b2604e&page=1`;

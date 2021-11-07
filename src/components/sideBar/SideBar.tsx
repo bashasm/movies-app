@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import home_cinema from "../../assets/home_cinema.svg";
-import { StateContext } from "../../context/GlobalState";
+import { loadPopularMovies } from "../../context/actions/movies";
+import { DispatchContext, StateContext } from "../../context/GlobalState";
 
 const SidebarContainer = styled.div`
   width: 200px;
@@ -50,8 +51,40 @@ const CategoriesGenresItem = styled.div`
 
 function SideBar() {
   const { moviesState } = useContext(StateContext);
-  console.log("[SideBar]");
+  const dispatch = useContext(DispatchContext);
   const { moviesList } = moviesState;
+
+  console.log("[SideBar]");
+
+  const fetchData = (url) => fetch(url).then((res) => res.json());
+
+  async function onPopularClick() {
+    const movies = await fetchData(
+      `https://api.themoviedb.org/3/movie/popular?api_key=4e0d07555e20e0345f6bd12869b2604e&page=1`
+    );
+    dispatch(loadPopularMovies(movies));
+  }
+
+  async function onTopRatedClick() {
+    const movies = await fetchData(
+      `https://api.themoviedb.org/3/movie/top_rated?api_key=4e0d07555e20e0345f6bd12869b2604e&page=1`
+    );
+    dispatch(loadPopularMovies(movies));
+  }
+
+  async function onUpComingClick() {
+    const movies = await fetchData(
+      `https://api.themoviedb.org/3/movie/upcoming?api_key=4e0d07555e20e0345f6bd12869b2604e&page=1`
+    );
+    dispatch(loadPopularMovies(movies));
+  }
+
+  async function onGenreClick(id) {
+    const movies = await fetchData(
+      `https://api.themoviedb.org/3/discover/movie?api_key=4e0d07555e20e0345f6bd12869b2604e&with_genres=${id}&page=1`
+    );
+    dispatch(loadPopularMovies(movies));
+  }
 
   return (
     <SidebarContainer>
@@ -62,15 +95,24 @@ function SideBar() {
       </HomeContainer>
       <CategoriesContainer>
         <CategoriesGenresHeading>Categories</CategoriesGenresHeading>
-        <CategoriesGenresItem>Popular</CategoriesGenresItem>
-        <CategoriesGenresItem>Top Rated</CategoriesGenresItem>
-        <CategoriesGenresItem>Upcoming</CategoriesGenresItem>
+        <CategoriesGenresItem onClick={onPopularClick}>
+          Popular
+        </CategoriesGenresItem>
+        <CategoriesGenresItem onClick={onTopRatedClick}>
+          Top Rated
+        </CategoriesGenresItem>
+        <CategoriesGenresItem onClick={onUpComingClick}>
+          Upcoming
+        </CategoriesGenresItem>
       </CategoriesContainer>
       <GenresContainer>
         <CategoriesGenresHeading>Genres</CategoriesGenresHeading>
         <div>
           {moviesList.map((movie) => (
-            <CategoriesGenresItem key={movie.id}>
+            <CategoriesGenresItem
+              key={movie.id}
+              onClick={() => onGenreClick(movie.id)}
+            >
               {movie.name}
             </CategoriesGenresItem>
           ))}
