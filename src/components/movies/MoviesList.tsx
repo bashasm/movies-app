@@ -1,6 +1,9 @@
-import { IMovies } from "../interfaces/interfaces";
-import styled from "styled-components";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { loadPopularMovies } from "../../context/actions/movies";
+import { DispatchContext } from "../../context/GlobalState";
+import { IMovies } from "../interfaces/interfaces";
 
 const MoviesListContainer = styled.div`
   padding: 10px;
@@ -45,6 +48,9 @@ const PagingButton = styled.button`
   &:hover {
     background-color: #2c3d9c;
   }
+  &:disabled {
+    background-color: gray;
+  }
 `;
 
 const PagingNumber = styled.span`
@@ -53,6 +59,28 @@ const PagingNumber = styled.span`
 `;
 
 function MoviesList({ page, results, total_pages, total_results }: IMovies) {
+  const dispatch = useContext(DispatchContext);
+
+  async function fetchPopularMovies(page) {
+    let url = "";
+    if (location.pathname.startsWith("/genres")) {
+      const arr = location.pathname.split("/");
+      const id = arr[arr.length - 1];
+      url = `https://api.themoviedb.org/3/discover/movie?api_key=4e0d07555e20e0345f6bd12869b2604e&with_genres=${id}&page=${page}`;
+    } else {
+      url = `https://api.themoviedb.org/3/movie/popular?api_key=4e0d07555e20e0345f6bd12869b2604e&page=${page}`;
+    }
+
+    const movies = await fetch(url).then((res) => res.json());
+    console.log(movies);
+    dispatch(loadPopularMovies(movies));
+  }
+
+  function onPage(page) {
+    console.log(page);
+    fetchPopularMovies(page);
+  }
+
   return (
     <MoviesListContainer>
       <MoviesListStyled>
@@ -69,9 +97,16 @@ function MoviesList({ page, results, total_pages, total_results }: IMovies) {
         ))}
       </MoviesListStyled>
       <PaginationContainer>
-        <PagingButton>Previous</PagingButton>
+        <PagingButton disabled={page <= 1} onClick={() => onPage(page - 1)}>
+          Previous
+        </PagingButton>
         <PagingNumber>{page}</PagingNumber>
-        <PagingButton>Next</PagingButton>
+        <PagingButton
+          disabled={page >= total_pages}
+          onClick={() => onPage(page + 1)}
+        >
+          Next
+        </PagingButton>
       </PaginationContainer>
     </MoviesListContainer>
   );

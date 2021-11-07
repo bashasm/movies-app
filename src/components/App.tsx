@@ -56,15 +56,15 @@ const App: React.FC = () => {
       <SideBar />
       <ContentContainer>
         <NavBar />
-        <Switch>
-          <MainContentContainer>
+        <MainContentContainer>
+          <Switch>
             <Route path="/movie/:id" exact component={MovieDetail} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/" exact component={Home} />
             <Route path="/genres/:id" exact component={GenresMovies} />
             <Redirect to="/not-found" />
-          </MainContentContainer>
-        </Switch>
+          </Switch>
+        </MainContentContainer>
       </ContentContainer>
     </Router>
   );
