@@ -2,6 +2,11 @@ import styled from "styled-components";
 
 const GenreItemContainer = styled.div`
   text-transform: uppercase;
+  cursor: pointer;
+  &:hover {
+    transform: translate(0, -4px);
+    transition: all 0.4s;
+  }
 `;
 
 function GenreItem({ name, onClick }) {

@@ -18,10 +18,11 @@ export interface IMovieCast {
 }
 
 export interface IMoviesState {
-  popularMovies: IPopularMovies;
+  popularMovies: IMovies;
   moviesList: IMoviesListItem[];
   movieDetail: IMovieDetail;
   movieCasts: IMovieCast[];
+  isLoading: boolean;
 }
 
 export interface IMoviesListItem {
@@ -46,7 +47,7 @@ export interface IMovieResults {
   vote_count: number;
 }
 
-export interface IPopularMovies {
+export interface IMovies {
   page: number;
   results: IMovieResults[];
   total_pages: number;

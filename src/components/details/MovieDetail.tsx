@@ -1,7 +1,11 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { loadMovieCasts, loadMovieDetail } from "../../context/actions/movies";
+import {
+  loadMovieCasts,
+  loadMovieDetail,
+  resetMovieDetail,
+} from "../../context/actions/movies";
 import { DispatchContext, StateContext } from "../../context/GlobalState";
 import Rating from "../rating/Rating";
 import Cast from "./Cast";
@@ -63,7 +67,7 @@ const MovieDetail: React.FC = () => {
   const state = useContext(StateContext);
   const detail = state?.moviesState?.movieDetail;
   const movieCasts = state?.moviesState?.movieCasts;
-  console.log("[MovieDetail]", detail, movieCasts);
+  console.log("[MovieDetail]");
 
   async function fetchMovieDetail() {
     const movieDetail = await fetch(
@@ -80,6 +84,9 @@ const MovieDetail: React.FC = () => {
   }
 
   useEffect(() => {
+    // reset
+    dispatch(resetMovieDetail());
+
     fetchMovieDetail();
     fetchCastDetails();
   }, [id]);

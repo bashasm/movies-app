@@ -1,15 +1,16 @@
 import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { loadPopularMovies } from "../../context/actions/movies";
+import { loadPopularMovies, reset } from "../../context/actions/movies";
 import { DispatchContext, StateContext } from "../../context/GlobalState";
+import Loader from "../loader/Loader";
 import MoviesList from "../movies/MoviesList";
 
 const GenresMovies: React.FC = () => {
   let { id } = useParams();
   const dispatch = useContext(DispatchContext);
   const { moviesState } = useContext(StateContext);
-  const { popularMovies } = moviesState;
-  console.log(popularMovies);
+  const { isLoading, popularMovies } = moviesState;
+  console.log("[GenresMovies]");
 
   async function fetchData(id) {
     const res = await fetch(
@@ -20,10 +21,16 @@ const GenresMovies: React.FC = () => {
   }
 
   useEffect(() => {
+    // fetch data
     fetchData(id);
   }, [id]);
 
-  return <div>{popularMovies && <MoviesList {...popularMovies} />}</div>;
+  return (
+    <div>
+      {isLoading && <Loader />}
+      {!isLoading && popularMovies && <MoviesList {...popularMovies} />}
+    </div>
+  );
 };
 
 export default GenresMovies;

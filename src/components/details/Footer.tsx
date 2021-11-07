@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 const FooterContainer = styled.div`
@@ -29,22 +29,14 @@ const Button = styled.a`
   }
 `;
 
-const LinkButton = styled(Link)`
-  display: inline-block;
-  cursor: pointer;
-  color: black;
-  text-decoration: none;
-  background: #efefef;
-  padding: 10px 15px;
-  margin-right: 10px;
-  border-radius: 10px;
-  &:hover {
-    background-color: #383786;
-    color: white;
-  }
-`;
-
 function Footer({ imdb_id, homepage, youtube_key }) {
+  const history = useHistory();
+
+  function onBack() {
+    // reset movie detail
+    history.push("/");
+  }
+
   return (
     <FooterContainer>
       <LeftContainer>
@@ -62,7 +54,7 @@ function Footer({ imdb_id, homepage, youtube_key }) {
         </Button>
       </LeftContainer>
       <RightContainer>
-        <LinkButton to="/">Back</LinkButton>
+        <Button onClick={onBack}>Back</Button>
       </RightContainer>
     </FooterContainer>
   );

@@ -13,7 +13,7 @@ const GenresContainer = styled.div`
 
 function SideBar() {
   const { moviesState } = useContext(StateContext);
-  console.log("[SideBar]", moviesState);
+  console.log("[SideBar]");
   const { moviesList } = moviesState;
 
   return (

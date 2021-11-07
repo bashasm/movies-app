@@ -4,6 +4,8 @@ import {
   LOAD_MOVIE_CAST_DETAIL,
   LOAD_MOVIE_DETAIL,
   LOAD_POPULAR_MOVIES,
+  RESET,
+  RESET_MOVIE_DETAIL,
 } from "../actions/movies";
 
 export const productsInitialState: IMoviesState = {
@@ -11,6 +13,7 @@ export const productsInitialState: IMoviesState = {
   moviesList: [],
   movieDetail: null,
   movieCasts: [],
+  isLoading: true,
 };
 
 // reducer
@@ -21,24 +24,40 @@ export default (state, action): IMoviesState => {
       return {
         ...state,
         popularMovies: action.payload,
+        isLoading: false,
       };
 
     case LOAD_MOVIES_LIST:
       return {
         ...state,
         moviesList: action.payload,
+        isLoading: false,
+      };
+
+    case RESET_MOVIE_DETAIL:
+      return {
+        ...state,
+        movieDetail: null,
+        isLoading: true,
       };
 
     case LOAD_MOVIE_DETAIL:
       return {
         ...state,
         movieDetail: action.payload,
+        isLoading: false,
       };
 
     case LOAD_MOVIE_CAST_DETAIL:
       return {
         ...state,
         movieCasts: action.payload,
+        isLoading: false,
+      };
+
+    case RESET:
+      return {
+        ...productsInitialState,
       };
 
     default:

@@ -22,7 +22,6 @@ const App: React.FC = () => {
     const movies = await fetch(
       "https://api.themoviedb.org/3/movie/popular?api_key=4e0d07555e20e0345f6bd12869b2604e&page=1"
     ).then((res) => res.json());
-    console.log(movies);
     // Load Popular Movies
     dispatch(loadPopularMovies(movies));
   };

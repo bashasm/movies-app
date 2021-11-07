@@ -53,8 +53,6 @@ const PagingNumber = styled.span`
 `;
 
 function MoviesList({ page, results, total_pages, total_results }: IMovies) {
-  console.log("[MoviesList]", page, results, total_pages, total_results);
-
   return (
     <MoviesListContainer>
       <MoviesListStyled>
