@@ -21,6 +21,12 @@ const ContentContainer = styled.div`
   flex-direction: column;
 `;
 
+const MainContentContainer = styled.div`
+  flex: 1;
+  height: calc(100% - 70px);
+  overflow: auto;
+`;
+
 const App: React.FC = () => {
   const dispatch = useContext(DispatchContext);
 
@@ -51,11 +57,13 @@ const App: React.FC = () => {
       <ContentContainer>
         <NavBar />
         <Switch>
-          <Route path="/movie/:id" exact component={MovieDetail} />
-          <Route path="/not-found" component={NotFound} />
-          <Route path="/" exact component={Home} />
-          <Route path="/genres/:id" exact component={GenresMovies} />
-          <Redirect to="/not-found" />
+          <MainContentContainer>
+            <Route path="/movie/:id" exact component={MovieDetail} />
+            <Route path="/not-found" component={NotFound} />
+            <Route path="/" exact component={Home} />
+            <Route path="/genres/:id" exact component={GenresMovies} />
+            <Redirect to="/not-found" />
+          </MainContentContainer>
         </Switch>
       </ContentContainer>
     </Router>
