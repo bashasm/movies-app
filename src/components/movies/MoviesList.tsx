@@ -72,7 +72,6 @@ function MoviesList({ page, results, total_pages, total_results }: IMovies) {
     }
 
     const movies = await fetch(url).then((res) => res.json());
-    console.log(movies);
     dispatch(loadPopularMovies(movies));
   }
 
