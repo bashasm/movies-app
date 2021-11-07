@@ -7,13 +7,19 @@ import {
 } from "react-router-dom";
 import { loadMoviesList, loadPopularMovies } from "../context/actions/movies";
 import { DispatchContext } from "../context/GlobalState";
-import "./App.css";
 import MovieDetail from "./details/MovieDetail";
 import GenresMovies from "./GenresMovies/GenresMovies";
 import Home from "./home/Home";
 import NavBar from "./navbar/NavBar";
 import NotFound from "./not-found/NotFound";
 import SideBar from "./sideBar/SideBar";
+import styled from "styled-components";
+
+const ContentContainer = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
 
 const App: React.FC = () => {
   const dispatch = useContext(DispatchContext);
@@ -42,7 +48,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <SideBar />
-      <div className="content-container">
+      <ContentContainer>
         <NavBar />
         <Switch>
           <Route path="/movie/:id" exact component={MovieDetail} />
@@ -51,7 +57,7 @@ const App: React.FC = () => {
           <Route path="/genres/:id" exact component={GenresMovies} />
           <Redirect to="/not-found" />
         </Switch>
-      </div>
+      </ContentContainer>
     </Router>
   );
 };
