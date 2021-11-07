@@ -7,6 +7,7 @@ import {
   resetMovieDetail,
 } from "../../context/actions/movies";
 import { DispatchContext, StateContext } from "../../context/GlobalState";
+import Loader from "../loader/Loader";
 import Rating from "../rating/Rating";
 import Cast from "./Cast";
 import Footer from "./Footer";
@@ -16,6 +17,8 @@ import TimeLangInfo from "./TimeLangInfo";
 
 const MovieDetailContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex: 1;
 `;
 
@@ -30,6 +33,11 @@ const SidebarContainer = styled.div`
 const ContentContainer = styled.div`
   margin: 10px;
   flex: 1;
+`;
+
+const TaglineContainer = styled.div`
+  text-align: center;
+  margin-top: 15px;
 `;
 
 const MovieTitle = styled.div`
@@ -64,9 +72,9 @@ const RatingTimeContainer = styled.div`
 const MovieDetail: React.FC = () => {
   let { id } = useParams();
   const dispatch = useContext(DispatchContext);
-  const state = useContext(StateContext);
-  const detail = state?.moviesState?.movieDetail;
-  const movieCasts = state?.moviesState?.movieCasts;
+  const {
+    moviesState: { movieDetail: detail, movieCasts, isLoading },
+  } = useContext(StateContext);
   console.log("[MovieDetail]");
 
   async function fetchMovieDetail() {
@@ -94,33 +102,42 @@ const MovieDetail: React.FC = () => {
   return (
     detail && (
       <MovieDetailContainer>
-        <SidebarContainer>
-          <Img
-            src={`https://image.tmdb.org/t/p/w500${detail.poster_path}`}
-            alt={detail.title}
-          />
-        </SidebarContainer>
-        <ContentContainer>
-          <MovieTitle>{detail.original_title}</MovieTitle>
-          <RatingTimeContainer>
-            <Rating value={detail.vote_average} />
-            <TimeLangInfo
-              release_date={detail.release_date}
-              runtime={detail.runtime}
-              lang={detail.spoken_languages[0].name}
-            />
-          </RatingTimeContainer>
-          <Genres genres={detail.genres} />
-          <Information information={detail.overview} />
-          <Cast cast={movieCasts?.slice(0, 6)} />
-          <Footer
-            imdb_id={detail.imdb_id}
-            homepage={detail.homepage}
-            youtube_key={
-              detail.videos.results?.length ? detail.videos.results[0].key : ""
-            }
-          />
-        </ContentContainer>
+        {isLoading && <Loader />}
+
+        {!isLoading && (
+          <>
+            <SidebarContainer>
+              <Img
+                src={`https://image.tmdb.org/t/p/w500${detail.poster_path}`}
+                alt={detail.title}
+              />
+            </SidebarContainer>
+            <ContentContainer>
+              <MovieTitle>{detail.original_title}</MovieTitle>
+              <TaglineContainer>{detail.tagline}</TaglineContainer>
+              <RatingTimeContainer>
+                <Rating value={detail.vote_average} />
+                <TimeLangInfo
+                  release_date={detail.release_date}
+                  runtime={detail.runtime}
+                  lang={detail.spoken_languages[0].name}
+                />
+              </RatingTimeContainer>
+              <Genres genres={detail.genres} />
+              <Information information={detail.overview} />
+              <Cast cast={movieCasts?.slice(0, 6)} />
+              <Footer
+                imdb_id={detail.imdb_id}
+                homepage={detail.homepage}
+                youtube_key={
+                  detail.videos.results?.length
+                    ? detail.videos.results[0].key
+                    : ""
+                }
+              />
+            </ContentContainer>
+          </>
+        )}
       </MovieDetailContainer>
     )
   );
