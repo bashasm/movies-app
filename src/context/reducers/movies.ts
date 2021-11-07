@@ -8,7 +8,7 @@ import {
   RESET_MOVIE_DETAIL,
 } from "../actions/movies";
 
-export const productsInitialState: IMoviesState = {
+export const moviesInitialState: IMoviesState = {
   popularMovies: null,
   moviesList: [],
   movieDetail: null,
@@ -57,7 +57,7 @@ export default (state, action): IMoviesState => {
 
     case RESET:
       return {
-        ...productsInitialState,
+        ...moviesInitialState,
       };
 
     default:

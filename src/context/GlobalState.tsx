@@ -1,19 +1,15 @@
 import { createContext, useCallback, useMemo, useReducer } from "react";
 import { IGlobalState } from "../components/interfaces/interfaces";
-// import cartReducer, { cartInitialState } from "./reducers/cart";
-import productsReducer, { productsInitialState } from "./reducers/movies";
+import moviesReducer, { moviesInitialState } from "./reducers/movies";
 
 export const DispatchContext = createContext();
 export const StateContext = createContext<IGlobalState>(null);
 
 const GlobalState: React.FC = ({ children }) => {
-  //   const [cartState, cartDispatch] = useReducer(cartReducer, cartInitialState);
-  const [moviesState, productsDispatch] = useReducer(
-    productsReducer,
-    productsInitialState
+  const [moviesState, moviesDispatch] = useReducer(
+    moviesReducer,
+    moviesInitialState
   );
-
-  console.log(moviesState);
 
   const combineDispatch =
     (...dispatches) =>
@@ -24,14 +20,15 @@ const GlobalState: React.FC = ({ children }) => {
   const combinedDispatch = useCallback(
     combineDispatch(
       // cartDispatch,
-      productsDispatch
+      moviesDispatch
     ),
     [
       // cartDispatch,
-      productsDispatch,
+      moviesDispatch,
     ]
   );
 
+  // for performance
   const combinedState = useMemo(
     () => ({
       // cartState,

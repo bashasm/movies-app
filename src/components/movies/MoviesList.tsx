@@ -76,7 +76,6 @@ function MoviesList({ page, results, total_pages, total_results }: IMovies) {
   }
 
   function onPage(page) {
-    console.log(page);
     fetchPopularMovies(page);
   }
 
