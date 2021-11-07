@@ -25,7 +25,6 @@ const MainContentContainer = styled.div`
   flex: 1;
   height: calc(100% - 70px);
   overflow: auto;
-  display: flex;
 `;
 
 const App: React.FC = () => {
